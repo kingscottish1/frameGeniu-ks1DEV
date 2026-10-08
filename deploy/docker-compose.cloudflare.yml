@@ -1,0 +1,17 @@
+# Named Cloudflare tunnel (custom domain).
+# 1. cloudflared tunnel login
+# 2. cloudflared tunnel create framegenius
+# 3. Put the tunnel id + credentials json in deploy/cloudflared/
+# 4. Edit deploy/cloudflared/config.yml hostname
+# 5. docker compose -f docker-compose.yml -f deploy/docker-compose.cloudflare.yml up -d
+
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: framegenius-named-tunnel
+    command: tunnel --config /etc/cloudflared/config.yml run
+    volumes:
+      - ./deploy/cloudflared:/etc/cloudflared:ro
+    depends_on:
+      - studio
+    restart: unless-stopped

@@ -1,0 +1,191 @@
+# =============================================================================
+# FrameGenius configuration template
+# Author: kingscottishDEV N.A.S
+# Copy this file to config.toml  (INSTALL.bat / START.bat do this for you)
+# Keys can also live in environment variables or a local .env file.
+# =============================================================================
+
+[app]
+name = "FrameGenius"
+author = "kingscottishDEV N.A.S"
+host = "0.0.0.0"
+port = 8080
+webui_port = 8501
+max_concurrent_tasks = 2
+max_queued_tasks = 20
+output_dir = "outputs"
+resource_dir = "resource"
+ffmpeg_path = ""          # leave empty to use the bundled imageio-ffmpeg binary
+hide_log = false
+debug = false
+allow_demo_mode = true    # generate videos without paid API keys
+
+[llm]
+# auto = Ollama if running (Gemma / Qwen / Llama), else built-in demo writer
+# demo | ollama | openai | anthropic | google | deepseek | moonshot | qwen
+provider = "auto"
+system_prompt = """You are FrameGenius, an elite short-form video writer.
+Write punchy spoken narration and concrete visual search terms.
+Return ONLY valid JSON."""
+temperature = 0.8
+max_tokens = 4096
+timeout_seconds = 300
+
+# OpenAI / any OpenAI-compatible gateway
+openai_api_key = ""
+openai_base_url = "https://api.openai.com/v1"
+openai_model = "gpt-4o-mini"
+
+# Anthropic Claude
+anthropic_api_key = ""
+anthropic_model = "claude-3-5-sonnet-latest"
+
+# Google Gemini
+google_api_key = ""
+google_model = "gemini-2.0-flash"
+
+# DeepSeek
+deepseek_api_key = ""
+deepseek_base_url = "https://api.deepseek.com"
+deepseek_model = "deepseek-chat"
+
+# Local Ollama — brain is the 17GB uncensored Gemma
+ollama_base_url = "http://127.0.0.1:11434"
+ollama_model = "1stageze/gemma4-26b-uncensored-1m:latest"
+
+# Moonshot / Kimi
+moonshot_api_key = ""
+moonshot_base_url = "https://api.moonshot.cn/v1"
+moonshot_model = "moonshot-v1-8k"
+
+# Alibaba Qwen (DashScope compatible OpenAI endpoint)
+qwen_api_key = ""
+qwen_base_url = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+qwen_model = "qwen-plus"
+
+[tts]
+# edge (free) | azure | google | elevenlabs | siliconflow | chatterbox
+provider = "edge"
+voice = "en-GB-LibbyNeural"
+rate = "-8%"
+volume = "+0%"
+pitch = "+0Hz"
+
+azure_speech_key = ""
+azure_speech_region = "eastus"
+azure_voice = "en-US-JennyNeural"
+
+google_tts_api_key = ""
+google_tts_voice = "en-US-Neural2-F"
+
+elevenlabs_api_key = ""
+elevenlabs_voice_id = "21m00Tcm4TlvDq8ikWAM"
+elevenlabs_model = "eleven_multilingual_v2"
+
+siliconflow_api_key = ""
+siliconflow_voice = "FunAudioLLM/CosyVoice2-0.5B:alex"
+siliconflow_base_url = "https://api.siliconflow.cn/v1"
+
+chatterbox_base_url = "http://127.0.0.1:8001"
+chatterbox_voice = "default"
+
+[media]
+# local = paint stills + Coverr B-roll (no key). Pexels/Pixabay only if a real key is set.
+# Coverr is always used for stock video. Mixkit is not used (Cloudflare 403).
+provider = "local"
+pexels_api_keys = []
+pixabay_api_keys = []
+coverr_api_key = ""
+prefer_vertical = true
+min_width = 720
+max_clips = 16
+download_timeout = 45
+
+[video]
+aspect_ratio = "9:16"     # 9:16 | 16:9 | 1:1
+width = 1080
+height = 1920
+fps = 30
+crf = 20
+preset = "veryfast"
+audio_bitrate = "192k"
+concat_mode = "sequential"  # sequential | random
+clip_min_duration = 2.5
+clip_max_duration = 5.5
+transition = "fade"         # none | fade
+fade_duration = 0.35
+color_grade = "cinematic"   # none | cinematic | vivid | moody
+watermark = true
+watermark_text = "kingscottishDEV"
+
+[subtitle]
+enabled = true
+# edge = use TTS word timings (fast) | whisper = transcribe audio (accurate, heavier)
+provider = "edge"
+font = "Montserrat-Bold.ttf"
+font_size = 28
+font_color = "#FFFFFF"
+stroke_color = "#000000"
+stroke_width = 3
+position = "bottom"         # top | center | bottom
+words_per_line = 8
+highlight = true
+highlight_color = "#F5C542"
+background = false
+background_color = "#000000AA"
+
+[audio]
+bgm_enabled = true
+bgm_volume = 0.14
+voice_volume = 1.0
+normalize = true
+fade_in = 0.4
+fade_out = 0.8
+
+[whisper]
+# Upload bleeps: Vosk (pip install vosk) auto-downloads ~40 MB, then faster-whisper if installed.
+model_size = "base"         # tiny | base | small | medium | large-v3
+device = "auto"             # auto | cpu | cuda
+compute_type = "int8"
+vad_filter = true
+download_root = "models"
+
+[upload]
+# empty | upload-post
+provider = ""
+upload_post_api_key = ""
+upload_post_base_url = "https://api.upload-post.com"
+default_platforms = ["youtube", "tiktok"]
+# Free Google Cloud OAuth client (YouTube Data API v3). Paste in Settings, then Connect.
+# Redirect (add BOTH in the Google client):
+#   http://127.0.0.1:8080/api/v1/publish/youtube/callback
+#   http://localhost:8080/api/v1/publish/youtube/callback
+# TikTok: no cookie bot. Caption pack + TikTok Studio, or Upload-Post if you have a key.
+youtube_client_id = ""
+youtube_client_secret = ""
+
+[channel]
+name = "FrameGenius"
+handle = ""
+voice = ""
+watermark = false
+intro_enabled = true
+cta_enabled = true
+cta_text = "Sub and follow."
+default_template = "auto"
+default_aspect = "9:16"
+
+[ui]
+theme = "dark"
+page_title = "FrameGenius"
+hide_sidebar_pages = false
+
+[proxy]
+http = ""
+https = ""
+
+[webhooks]
+enabled = false
+on_complete = ""
+on_failed = ""
+secret = ""

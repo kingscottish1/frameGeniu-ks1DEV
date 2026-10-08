@@ -1,0 +1,13 @@
+{
+  "id": "motivational",
+  "name": "Motivational",
+  "tagline": "Punchy voice. Big feelings. A hard cut to action.",
+  "description": "High-energy shorts for discipline, fitness, craft, and comeback stories.",
+  "voice": "en-US-GuyNeural",
+  "aspect_ratio": "9:16",
+  "color_grade": "cinematic",
+  "bgm": "royalty_free_1.mp3",
+  "subtitle": { "position": "bottom", "highlight": true },
+  "duration": 30,
+  "author": "kingscottishDEV N.A.S"
+}

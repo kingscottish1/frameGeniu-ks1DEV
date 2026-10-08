@@ -1,0 +1,28 @@
+# FrameGenius production-ready image — kingscottishDEV N.A.S
+services:
+  framegenius:
+    image: ghcr.io/kingscottishdev/framegenius:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: framegenius
+    ports:
+      - "8080:8080"
+      - "8501:8501"
+    environment:
+      - FRAMEGENIUS_HOME=/app
+    volumes:
+      - ./config.toml:/app/config.toml:ro
+      - framegenius-outputs:/app/outputs
+      - framegenius-models:/app/models
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8080/api/v1/health"]
+      interval: 30s
+      timeout: 8s
+      retries: 3
+    command: python scripts/launch.py --all
+
+volumes:
+  framegenius-outputs:
+  framegenius-models:

@@ -1,0 +1,36 @@
+# FrameGenius GPU stack — kingscottishDEV N.A.S
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.gpu
+    image: framegenius:gpu
+    container_name: framegenius-api-gpu
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config.toml:/app/config.toml
+      - ./outputs:/app/outputs
+      - ./resource:/app/resource
+      - ./models:/app/models
+    gpus: all
+    restart: unless-stopped
+
+  webui:
+    image: framegenius:gpu
+    container_name: framegenius-webui-gpu
+    depends_on:
+      - api
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./config.toml:/app/config.toml
+      - ./outputs:/app/outputs
+      - ./resource:/app/resource
+    command: >
+      python -m streamlit run webui/streamlit_app.py
+      --server.address 0.0.0.0
+      --server.port 8501
+      --server.headless true
+    gpus: all
+    restart: unless-stopped

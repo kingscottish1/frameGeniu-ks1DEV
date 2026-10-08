@@ -1,0 +1,100 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "framegenius"
+version = "1.11.7"
+description = "FrameGenius — AI video generation studio by kingscottishDEV N.A.S"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+    { name = "kingscottishDEV N.A.S" },
+]
+keywords = [
+    "video",
+    "ai",
+    "tts",
+    "shorts",
+    "ffmpeg",
+    "fastapi",
+    "streamlit",
+    "framegenius",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Video",
+]
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "streamlit>=1.39.0",
+    "pydantic>=2.9.0",
+    "pydantic-settings>=2.6.0",
+    "httpx>=0.27.0",
+    "loguru>=0.7.2",
+    "typer>=0.12.5",
+    "rich>=13.9.0",
+    "edge-tts>=6.1.12",
+    "moviepy>=1.0.3",
+    "pillow>=10.4.0",
+    "numpy>=1.26.0",
+    "imageio-ffmpeg>=0.5.1",
+    "python-multipart>=0.0.12",
+    "aiofiles>=24.1.0",
+    "tenacity>=9.0.0",
+    "orjson>=3.10.0",
+    "tqdm>=4.66.0",
+    "openai>=1.50.0",
+    "anthropic>=0.36.0",
+    "google-generativeai>=0.8.0",
+    "sse-starlette>=2.1.0",
+    "watchdog>=5.0.0",
+    "python-dotenv>=1.0.1",
+    "websockets>=13.0",
+    "cryptography>=43.0.0",
+    "bcrypt>=4.2.0",
+]
+
+[project.optional-dependencies]
+whisper = ["faster-whisper>=1.0.3", "vosk>=0.3.44"]
+redis = ["redis>=5.1.0"]
+gpu = ["faster-whisper>=1.0.3"]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+    "httpx>=0.27.0",
+]
+
+[project.scripts]
+framegenius = "cli:app"
+framegenius-api = "main:run"
+
+[project.urls]
+Homepage = "https://github.com/kingscottishDEV/FrameGenius"
+Documentation = "docs/README.md"
+
+[tool.setuptools]
+py-modules = ["main", "cli"]
+
+[tool.setuptools.packages.find]
+include = ["app*", "webui*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.uv]
+dev-dependencies = ["pytest>=8.3.0", "pytest-asyncio>=0.24.0"]

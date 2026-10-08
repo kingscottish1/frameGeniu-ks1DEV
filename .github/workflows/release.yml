@@ -1,0 +1,21 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Notes
+        run: |
+          echo "FrameGenius ${GITHUB_REF_NAME} by kingscottishDEV N.A.S" > /tmp/notes.md
+      - uses: softprops/action-gh-release@v2
+        with:
+          body_path: /tmp/notes.md
+          generate_release_notes: true

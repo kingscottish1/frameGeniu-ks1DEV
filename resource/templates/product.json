@@ -1,0 +1,13 @@
+{
+  "id": "product",
+  "name": "Product",
+  "tagline": "Problem, product, proof, ship it.",
+  "description": "SaaS and product launches with a clean demo rhythm.",
+  "voice": "en-US-AndrewNeural",
+  "aspect_ratio": "9:16",
+  "color_grade": "cinematic",
+  "bgm": "royalty_free_2.mp3",
+  "subtitle": { "position": "bottom", "highlight": false },
+  "duration": 32,
+  "author": "kingscottishDEV N.A.S"
+}

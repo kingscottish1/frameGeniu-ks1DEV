@@ -1,0 +1,10 @@
+# Named tunnel config. Replace the tunnel id and hostname.
+# Credentials file is created by:  cloudflared tunnel create framegenius
+
+tunnel: REPLACE_WITH_TUNNEL_ID
+credentials-file: /etc/cloudflared/credentials.json
+
+ingress:
+  - hostname: studio.example.com
+    service: http://studio:8080
+  - service: http_status:404

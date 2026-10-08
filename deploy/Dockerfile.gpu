@@ -1,0 +1,24 @@
+# FrameGenius GPU image (CUDA) — kingscottishDEV N.A.S
+FROM nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    DEBIAN_FRONTEND=noninteractive \
+    FRAMEGENIUS_HOME=/app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3.11 python3.11-venv python3-pip \
+        ffmpeg fonts-liberation curl ca-certificates \
+    && ln -sf /usr/bin/python3.11 /usr/local/bin/python \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY requirements.txt pyproject.toml ./
+RUN python -m pip install --no-cache-dir -U pip \
+    && python -m pip install --no-cache-dir -r requirements.txt \
+    && python -m pip install --no-cache-dir faster-whisper
+
+COPY . .
+EXPOSE 8080 8501
+
+CMD ["python", "main.py", "--host", "0.0.0.0", "--port", "8080"]

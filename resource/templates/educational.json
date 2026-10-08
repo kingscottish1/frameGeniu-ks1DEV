@@ -1,0 +1,13 @@
+{
+  "id": "educational",
+  "name": "Educational",
+  "tagline": "One idea. Plain language. Built to be replayed.",
+  "description": "Explainers, how-tos, and memory-friendly breakdowns.",
+  "voice": "en-US-JennyNeural",
+  "aspect_ratio": "9:16",
+  "color_grade": "vivid",
+  "bgm": "royalty_free_2.mp3",
+  "subtitle": { "position": "bottom", "highlight": true },
+  "duration": 35,
+  "author": "kingscottishDEV N.A.S"
+}

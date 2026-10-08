@@ -1,0 +1,8 @@
+[app]
+name = "FrameGenius"
+[llm]
+provider = "demo"
+[tts]
+provider = "edge"
+[media]
+provider = "local"

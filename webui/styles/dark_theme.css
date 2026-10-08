@@ -1,0 +1,30 @@
+/* Extra dark refinements — FrameGenius by kingscottishDEV N.A.S */
+[data-testid="stAppViewContainer"] .main .block-container {
+  padding-top: 1.4rem;
+  max-width: 1200px;
+}
+
+[data-testid="stMetricValue"] {
+  color: #f5c542 !important;
+  font-family: "Cormorant Garamond", serif;
+}
+
+div[data-testid="stStatusWidget"] { visibility: hidden; }
+
+.fg-pill {
+  display: inline-block;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  color: #00e5ff;
+  border-radius: 999px;
+  padding: 0.15rem 0.65rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fg-hr {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.45), transparent);
+  border: 0;
+  margin: 1.2rem 0;
+}

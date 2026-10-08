@@ -1,0 +1,13 @@
+{
+  "id": "true-crime",
+  "name": "True crime",
+  "tagline": "Three things do not add up.",
+  "description": "Timeline, witness, money. The press version is never the whole file.",
+  "voice": "en-US-GuyNeural",
+  "aspect_ratio": "9:16",
+  "color_grade": "moody",
+  "bgm": "royalty_free_3.wav",
+  "subtitle": { "position": "bottom", "highlight": true },
+  "duration": 45,
+  "author": "kingscottishDEV N.A.S"
+}

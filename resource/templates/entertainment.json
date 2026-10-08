@@ -1,0 +1,13 @@
+{
+  "id": "entertainment",
+  "name": "Entertainment",
+  "tagline": "Hooks, twists, internet energy.",
+  "description": "Culture recaps, listicles, and chaotic commentary.",
+  "voice": "en-US-AriaNeural",
+  "aspect_ratio": "9:16",
+  "color_grade": "vivid",
+  "bgm": "royalty_free_1.mp3",
+  "subtitle": { "position": "center", "highlight": true },
+  "duration": 28,
+  "author": "kingscottishDEV N.A.S"
+}

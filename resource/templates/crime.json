@@ -1,0 +1,13 @@
+{
+  "id": "crime",
+  "name": "Crime deep dive",
+  "tagline": "Paper trail. Last 24 hours. Who lied.",
+  "description": "True-crime shorts: hook, timeline, money, the camera that should not exist.",
+  "voice": "en-US-GuyNeural",
+  "aspect_ratio": "9:16",
+  "color_grade": "moody",
+  "bgm": "royalty_free_3.mp3",
+  "subtitle": { "position": "bottom", "highlight": true },
+  "duration": 45,
+  "author": "kingscottishDEV N.A.S"
+}

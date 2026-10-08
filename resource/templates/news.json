@@ -1,0 +1,13 @@
+{
+  "id": "news",
+  "name": "News brief",
+  "tagline": "Signal over noise. Calm authority.",
+  "description": "Short briefings that skip the panic headline.",
+  "voice": "en-GB-RyanNeural",
+  "aspect_ratio": "16:9",
+  "color_grade": "cinematic",
+  "bgm": "royalty_free_2.mp3",
+  "subtitle": { "position": "bottom", "highlight": true },
+  "duration": 30,
+  "author": "kingscottishDEV N.A.S"
+}

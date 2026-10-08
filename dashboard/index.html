@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>FrameGenius · kingscottishDEV N.A.S</title>
+  <link rel="icon" href="/brand/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/dashboard/assets/app.css?v=24" />
+</head>
+<body>
+  <div id="aurora"></div>
+  <canvas id="grid"></canvas>
+  <div id="grain"></div>
+
+  <div id="app" class="app">
+    <aside class="rail">
+      <div class="brand">
+        <img src="/brand/logo.png" alt="FrameGenius" />
+        <div>
+          <strong>FrameGenius</strong>
+          <small>kingscottishDEV N.A.S</small>
+        </div>
+      </div>
+      <nav>
+        <button class="wave-btn nav-btn active" data-view="generate" data-wave><span>Generate</span></button>
+        <button class="wave-btn nav-btn" data-view="agent" data-wave><span>Crown</span></button>
+        <button class="wave-btn nav-btn" data-view="reskin" data-wave><span>Upload</span></button>
+        <button class="wave-btn nav-btn" data-view="factory" data-wave><span>Factory</span></button>
+        <button class="wave-btn nav-btn" data-view="queue" data-wave><span>Queue</span></button>
+        <button class="wave-btn nav-btn" data-view="library" data-wave><span>Library</span></button>
+        <button class="wave-btn nav-btn" data-view="settings" data-wave><span>Settings</span></button>
+      </nav>
+      <div class="rail-foot">
+        <div class="pulse" id="ready-pulse"><i></i> <span id="ready-label">checking</span></div>
+        <p class="byline">by kingscottishDEV N.A.S</p>
+      </div>
+    </aside>
+
+    <main class="stage">
+      <header class="top">
+        <div>
+          <p class="kicker" id="view-kicker">Create</p>
+          <h2 id="view-title">Generate</h2>
+        </div>
+        <div class="top-meta">
+          <span id="clock"></span>
+          <span class="chip" id="who">studio</span>
+        </div>
+      </header>
+
+      <section class="view" id="view-overview" hidden></section>
+
+      <section class="view" id="view-generate">
+        <div id="preflight" class="preflight"></div>
+        <article class="panel wide">
+          <div class="panel-head">
+            <h3>Cut a film</h3>
+            <p class="muted">Research the topic, write a unique script, generate matching pictures, speak it, export an MP4.</p>
+          </div>
+          <form id="gen-form" class="gen">
+            <label class="full">Topic
+              <input id="topic" required maxlength="240" placeholder="Any subject — sourdough, a boxing gym, a lost ship, a kingpin…" />
+            </label>
+            <label>Series name <span class="opt">optional</span>
+              <input id="series-name" maxlength="80" placeholder="Leave blank, or name the series" />
+            </label>
+            <label>Part
+              <input id="series-part" type="number" min="1" max="99" placeholder="1" />
+            </label>
+            <label>Of
+              <input id="series-total" type="number" min="1" max="99" placeholder="5" />
+            </label>
+            <label class="full">Custom script <span class="opt">optional</span>
+              <textarea id="script" rows="4" placeholder="Leave empty. FrameGenius scrapes the web and writes a unique narration."></textarea>
+            </label>
+            <label>Template
+              <select id="template">
+                <option value="auto" selected>auto (match the topic)</option>
+                <option>motivational</option>
+                <option>educational</option>
+                <option>entertainment</option>
+                <option>product</option>
+                <option>story</option>
+                <option>news</option>
+                <option>crime</option>
+                <option>true-crime</option>
+              </select>
+            </label>
+            <label>Aspect
+              <select id="aspect">
+                <option>9:16</option>
+                <option>16:9</option>
+                <option>1:1</option>
+                <option>4:5</option>
+              </select>
+            </label>
+            <label>Writer
+              <select id="llm-provider">
+                <option value="auto">auto (Ollama, then studio writer)</option>
+                <option value="ollama">Ollama only</option>
+                <option value="studio">studio writer</option>
+                <option value="openai">OpenAI</option>
+              </select>
+            </label>
+            <label>Ollama model
+              <select id="ollama-model"></select>
+            </label>
+            <label>Voice
+              <select id="voice"></select>
+            </label>
+            <label class="full">Length
+              <div id="dur-pills" class="dur-pills">
+                <button type="button" class="wave-btn on" data-sec="30" data-wave><span>30s</span></button>
+                <button type="button" class="wave-btn" data-sec="60" data-wave><span>1m</span></button>
+                <button type="button" class="wave-btn" data-sec="300" data-wave><span>5m</span></button>
+                <button type="button" class="wave-btn" data-sec="600" data-wave><span>10m</span></button>
+                <button type="button" class="wave-btn" data-sec="900" data-wave><span>15m</span></button>
+                <button type="button" class="wave-btn" data-sec="1800" data-wave><span>30m</span></button>
+              </div>
+              <input id="duration" type="hidden" value="30" />
+            </label>
+            <div class="full checks">
+              <label class="check"><input id="research" type="checkbox" checked /> Research the web + topic pictures</label>
+              <label class="check"><input id="subs" type="checkbox" checked /> Captions</label>
+              <label class="check"><input id="bgm" type="checkbox" checked /> Score</label>
+              <label class="check"><input id="shorts" type="checkbox" checked /> Cut Shorts from long films</label>
+              <label class="check"><input id="dual" type="checkbox" checked /> Also export 16:9 / 9:16</label>
+              <label class="check"><input id="hooklock" type="checkbox" checked /> Hook lock (first 3 seconds)</label>
+            </div>
+            <div class="full actions">
+              <button class="wave-btn gold xl" type="submit" data-wave id="render-btn"><span>Render film</span></button>
+            </div>
+          </form>
+          <div id="gen-status" class="status" hidden></div>
+        </article>
+      </section>
+
+      <section class="view" id="view-agent" hidden>
+        <article class="panel wide agent-wrap" id="agent-desk">
+          <div class="panel-head">
+            <h3>Crown</h3>
+            <p class="muted">Talk. Ask for a picture — Crown paints it. Drop a file if you want it to use that.</p>
+          </div>
+          <div id="agent-log" class="agent-log"></div>
+          <form id="agent-form" class="agent-form">
+            <div id="agent-chips" class="agent-chips" hidden></div>
+            <div class="composer">
+              <button class="wave-btn ghost attach-btn" type="button" data-wave id="agent-attach"><span>Attach</span></button>
+              <input id="agent-file" type="file" multiple accept="image/*,.txt,.md,.csv,.json,.log,.py,.html" hidden />
+              <textarea id="agent-input" rows="3" placeholder="Ask anything, drop a file, or describe a picture…"></textarea>
+            </div>
+            <div class="agent-actions">
+              <button class="wave-btn gold" type="submit" data-wave id="agent-send"><span>Send</span></button>
+              <button class="wave-btn" type="button" data-wave id="agent-draw"><span>Make a picture</span></button>
+            </div>
+          </form>
+        </article>
+      </section>
+
+      <section class="view" id="view-reskin" hidden>
+        <article class="panel wide" id="reskin-desk">
+          <div class="panel-head">
+            <h3>Upload a film</h3>
+            <p class="muted">Drop a video. Bleeps only the swears — the rest of the soundtrack stays. Needs <code>pip install vosk</code> in <code>.venv</code> (first bleep downloads a 40&nbsp;MB English model).</p>
+          </div>
+          <form id="reskin-form" class="gen">
+            <label class="full">Video
+              <div id="reskin-drop" class="dropzone">Drop an mp4 here, or click to choose</div>
+              <input id="reskin-file" type="file" accept="video/mp4,video/quicktime,video/webm,video/x-matroska,.mp4,.mov,.mkv,.webm,.m4v" hidden />
+              <p class="muted" id="reskin-name"></p>
+            </label>
+            <label class="full">Topic <span class="opt">optional — guessed from the speech if you leave it</span>
+              <input id="reskin-topic" maxlength="240" placeholder="What’s the film about?" />
+            </label>
+            <label>Aspect
+              <select id="reskin-aspect">
+                <option>9:16</option>
+                <option>16:9</option>
+                <option>1:1</option>
+              </select>
+            </label>
+            <label class="check"><input id="reskin-bleep" type="checkbox" checked /> Bleep profanity</label>
+            <div class="full actions">
+              <button class="wave-btn gold xl" type="submit" data-wave id="reskin-btn"><span>Bleep + new pictures</span></button>
+            </div>
+          </form>
+          <div id="reskin-status" class="status" hidden></div>
+        </article>
+      </section>
+
+      <section class="view" id="view-factory" hidden>
+        <article class="panel wide">
+          <div class="panel-head">
+            <h3>Trend radar</h3>
+            <p class="muted">Free sources. Click a topic to drop it on Generate. No signup.</p>
+          </div>
+          <div id="trend-niches" class="dur-pills">
+            <button type="button" class="wave-btn on" data-niche="all" data-wave><span>All</span></button>
+            <button type="button" class="wave-btn" data-niche="crime" data-wave><span>Crime</span></button>
+            <button type="button" class="wave-btn" data-niche="news" data-wave><span>News</span></button>
+            <button type="button" class="wave-btn" data-niche="gym" data-wave><span>Gym</span></button>
+            <button type="button" class="wave-btn" data-niche="story" data-wave><span>Story</span></button>
+            <button type="button" class="wave-btn" data-niche="entertainment" data-wave><span>Entertainment</span></button>
+          </div>
+          <div id="trends" class="trends"></div>
+        </article>
+        <article class="panel wide" style="margin-top:1rem">
+          <div class="panel-head">
+            <h3>Overnight factory</h3>
+            <p class="muted">One topic per line. Uses the voice, length and template from Generate. Renders while you sleep.</p>
+          </div>
+          <form id="batch-form" class="gen">
+            <label class="full">Series name <span class="opt">optional — each line becomes the next episode</span>
+              <input id="batch-series" maxlength="80" placeholder="Any series name you want" />
+            </label>
+            <label class="full">Topics
+              <textarea id="batch-topics" rows="8" placeholder="Any subject, one per line&#10;How sourdough actually works&#10;The last voyage of the Baychimo"></textarea>
+            </label>
+            <div class="full actions">
+              <button class="wave-btn gold xl" type="submit" data-wave id="batch-btn"><span>Queue the night shift</span></button>
+            </div>
+          </form>
+          <div id="batch-status" class="status" hidden></div>
+        </article>
+      </section>
+
+      <section class="view" id="view-queue" hidden>
+        <article class="panel wide">
+          <h3>Render queue</h3>
+          <div id="queue" class="stack"></div>
+        </article>
+      </section>
+
+      <section class="view" id="view-library" hidden>
+        <div id="library" class="library"></div>
+      </section>
+
+      <section class="view" id="view-vault" hidden></section>
+
+      <section class="view" id="view-settings" hidden>
+        <article class="panel wide">
+          <div class="panel-head">
+            <h3>Providers</h3>
+            <p class="muted">No keys required. Coverr B-roll is always on. Add a free Pexels key or YouTube OAuth client if you want extra stock / one-click upload.</p>
+          </div>
+          <form id="cfg-form" class="gen">
+            <label>LLM
+              <select id="cfg-llm"></select>
+            </label>
+            <label>Ollama model
+              <select id="cfg-ollama-model"></select>
+            </label>
+            <label>TTS
+              <select id="cfg-tts"></select>
+            </label>
+            <label>Media
+              <select id="cfg-media"></select>
+            </label>
+            <label class="full">Ollama URL
+              <input id="cfg-ollama-url" placeholder="http://127.0.0.1:11434" />
+            </label>
+            <label class="full">OpenAI key
+              <input id="cfg-openai" type="password" placeholder="unchanged if blank" />
+            </label>
+            <label class="full">Pexels key <span class="opt">optional — free at pexels.com/api</span>
+              <input id="cfg-pexels" type="password" placeholder="unchanged if blank" autocomplete="off" />
+            </label>
+            <label class="full">YouTube OAuth client id
+              <input id="cfg-yt-id" placeholder="xxxx.apps.googleusercontent.com" autocomplete="off" />
+            </label>
+            <label class="full">YouTube OAuth client secret
+              <input id="cfg-yt-secret" type="password" placeholder="unchanged if blank" autocomplete="off" />
+            </label>
+            <p class="muted full">Redirect URI (paste both in Google Cloud): <code>http://127.0.0.1:8080/api/v1/publish/youtube/callback</code> and the localhost twin. Enable <b>YouTube Data API v3</b> (free). Default privacy is unlisted.</p>
+            <p class="muted full" id="yt-status"></p>
+            <div class="full actions">
+              <button class="wave-btn gold" type="submit" data-wave><span>Save configuration</span></button>
+              <button class="wave-btn" type="button" data-wave id="yt-connect"><span>Connect YouTube</span></button>
+            </div>
+          </form>
+        </article>
+        <article class="panel wide" style="margin-top:1rem">
+          <div class="panel-head">
+            <h3>Channel kit</h3>
+            <p class="muted">Same show every night. Intro card, end CTA, watermark, locked name.</p>
+          </div>
+          <form id="channel-form" class="gen">
+            <label>Channel name
+              <input id="ch-name" maxlength="40" placeholder="FrameGenius" />
+            </label>
+            <label>Handle
+              <input id="ch-handle" maxlength="40" placeholder="@yourchannel" />
+            </label>
+            <label class="full">End card / CTA
+              <input id="ch-cta" maxlength="80" placeholder="Sub and follow." />
+            </label>
+            <label class="check"><input id="ch-intro" type="checkbox" checked /> Intro title card</label>
+            <label class="check"><input id="ch-end" type="checkbox" checked /> End CTA card</label>
+            <label class="check"><input id="ch-mark" type="checkbox" checked /> Small kingscottishDEV watermark</label>
+            <div class="full actions">
+              <button class="wave-btn gold" type="submit" data-wave><span>Save channel</span></button>
+            </div>
+          </form>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="/dashboard/assets/wave.js?v=23"></script>
+  <script src="/dashboard/assets/app.js?v=23"></script>
+</body>
+</html>

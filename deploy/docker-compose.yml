@@ -1,0 +1,14 @@
+# Run from repo root:  docker compose -f deploy/docker-compose.yml up --build
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: framegenius:cpu
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../config.toml:/app/config.toml
+      - ../outputs:/app/outputs
+      - ../resource:/app/resource
+    restart: unless-stopped

@@ -1,0 +1,49 @@
+# Easy local studio. From this folder:
+#   docker compose up --build
+# Open http://127.0.0.1:8080
+#
+# Public URL via Cloudflare quick tunnel:
+#   docker compose --profile tunnel up --build
+# then copy the https://*.trycloudflare.com link from the tunnel logs.
+#
+# Ollama on your PC is reached at host.docker.internal:11434
+
+services:
+  studio:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile
+    image: framegenius:local
+    container_name: framegenius
+    ports:
+      - "8080:8080"
+    environment:
+      FRAMEGENIUS_AUTH: "0"
+      FRAMEGENIUS_LLM_PROVIDER: auto
+      OLLAMA_HOST: http://host.docker.internal:11434
+      OLLAMA_MODEL: 1stageze/gemma4-26b-uncensored-1m:latest
+      FRAMEGENIUS_CORS_ORIGINS: http://127.0.0.1:8080,http://localhost:8080
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./outputs:/app/outputs
+      - ./resource:/app/resource
+      - ./config.toml:/app/config.toml
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8080/api/v1/health"]
+      interval: 30s
+      timeout: 8s
+      retries: 3
+      start_period: 25s
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: framegenius-tunnel
+    profiles: ["tunnel"]
+    command: tunnel --no-autoupdate --url http://studio:8080
+    depends_on:
+      studio:
+        condition: service_started
+    restart: unless-stopped

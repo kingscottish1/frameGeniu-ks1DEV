@@ -1,0 +1,13 @@
+{
+  "id": "story",
+  "name": "Story",
+  "tagline": "Personal arc. Quiet honesty.",
+  "description": "First-person essays with cinematic stills.",
+  "voice": "en-GB-SoniaNeural",
+  "aspect_ratio": "9:16",
+  "color_grade": "moody",
+  "bgm": "royalty_free_3.mp3",
+  "subtitle": { "position": "bottom", "highlight": false },
+  "duration": 40,
+  "author": "kingscottishDEV N.A.S"
+}

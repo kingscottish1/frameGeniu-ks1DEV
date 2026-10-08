@@ -1,0 +1,52 @@
+FrameGenius — kingscottishDEV N.A.S
+
+WINDOWS
+  APP.cmd      = real app window (no browser chrome)
+  GO.cmd       = same studio in your browser
+  If you cannot see .bat files, use the .cmd files.
+  Generate is home. No password.
+  Download MP4 when the bar hits 100%.
+  Files: outputs\videos\
+
+  tools\MAKE_SHORTCUT.cmd  = put FrameGenius on your Desktop
+  INSTALL.cmd  = first-time packages (also tries vosk for bleeps)
+  RUN.cmd      = start studio only
+
+CROWN AI
+  Brain: gemma4-pro:latest
+  Talk. Click Make a picture. It just answers.
+  Upload tab: drop a video, bleep swears only — the rest of the sound stays.
+  Bleeps need vosk:  .venv\Scripts\pip install vosk
+  Every film ships captions + tags next to the MP4.
+
+POST
+  Library / Generate result → YouTube or TikTok.
+  YouTube: Settings → paste free Google OAuth client → Save → Connect YouTube.
+  Redirect: http://127.0.0.1:8080/api/v1/publish/youtube/callback
+  TikTok: caption copied, TikTok Studio opens. No cookie bot.
+  Coverr B-roll is always on (no key). Pexels optional at pexels.com/api.
+
+FACTORY
+  Factory tab = trend radar + overnight topic list.
+  Settings → Channel kit = intro, end CTA, watermark.
+  Series name + part/of = any show you invent.
+  Dual export = 9:16 and 16:9 from one render.
+  Finished pack lands in outputs\TODAY\
+  tools\JANITOR.cmd wipes old scratch (keeps videos).
+
+OLLAMA
+  1stageze/gemma4-26b-uncensored-1m:latest   (17 GB writer)
+  gemma4-pro:latest                          (Crown)
+  qwen3.5-direct:latest
+  dzgg/Qwen3.5-Uncensored-HauhauCS-Aggressive:4b
+  qwen3-8b-pro:latest
+  qwen3.6-pro:latest                         (23 GB, listed only)
+  qwen-coder-fast:latest
+  qwen2.5-coder:1.5b-base
+  Pick one in Generate. Keep Ollama running.
+
+PUBLIC LINK
+  tools\CLOUDFLARE.bat   (studio must be running)
+
+DOCKER
+  tools\DOCKER.bat

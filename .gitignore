@@ -1,0 +1,80 @@
+# FrameGenius — kingscottishDEV N.A.S
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.cache/
+.arena/
+
+# Secrets & local config
+.env
+.env.*
+!.env.example
+ACCOUNT.txt
+config.toml
+*.pem
+*.key
+credentials.json
+data/
+data/**
+.test-data/
+.test-data/**
+!data/.gitkeep
+dist/
+
+# Outputs & downloaded models
+outputs/**
+!outputs/.gitkeep
+!outputs/videos/.gitkeep
+!outputs/scripts/.gitkeep
+!outputs/logs/.gitkeep
+!outputs/thumbnails/.gitkeep
+!outputs/tasks/.gitkeep
+models/**
+!models/.gitkeep
+!models/whisper-large-v3/.gitkeep
+!models/other_models/.gitkeep
+
+# OS / editors
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# UV / pip
+uv.lock.bak
+pip-wheel-metadata/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Task scratch
+tmp/
+temp/
+*.tmp
+
+# Local tunnel binary
+tools/cloudflared.exe
+deploy/cloudflared/credentials.json
